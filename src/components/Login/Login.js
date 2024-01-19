@@ -2,6 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
+import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 
 const emailReducer = (state, action) => {
@@ -120,7 +121,42 @@ const Login = (props) => {
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <div
+        <div>
+          <Input 
+            id='email'
+            label='E-mail'
+            type='email'
+            isValid={emailIsValid}
+            value={emailState.value}
+            onChange={emailChangeHandler}
+            onBlur={validateEmailHandler}
+          ></Input>
+          <Input 
+            id="collegeName "
+            type="collegeName "
+            label="College Name"
+            isValid={collegeNameIsValid}
+            value={collegeNameState.value}
+            onChange={collegeNameChangeHandler}
+            onBlur={validatecollegeNameHandler}
+          ></Input>
+          <Input
+            id="password"
+            type="password"
+            label="Password"
+            isValid={passwordIsValid}
+            value={passwordState.value}
+            onChange={passwordChangeHandler}
+            onBlur={validatePasswordHandler}
+          />
+        </div>
+        <div className={classes.actions}>
+          <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+            Login
+          </Button>
+        </div>
+
+        {/* <div
           className={`${classes.control} ${
             emailState.isValid === false ? classes.invalid : ''
           }`}
@@ -161,12 +197,12 @@ const Login = (props) => {
             onChange={passwordChangeHandler}
             onBlur={validatePasswordHandler}
           />
-        </div>
-        <div className={classes.actions}>
+        </div> */}
+        {/* <div className={classes.actions}>
           <Button type="submit" className={classes.btn} disabled={!formIsValid}>
             Login
           </Button>
-        </div>
+        </div> */}
       </form>
     </Card>
   );
